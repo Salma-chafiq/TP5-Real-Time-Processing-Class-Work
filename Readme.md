@@ -42,12 +42,7 @@ Once the topics are set up, produce some sample data to the `orders` topic to si
 
 2. Enter sample messages in the format `<customer_id>,<order_amount>`:
 
-   ```plaintext
-   customer1,100.5
-   customer2,200.75
-   customer1,50.25
-   customer3,300.00
-   ```
+![Input](Capture/capture1.png)
 
    Each message represents an order with a `customer_id` and an `order_amount`.
 
@@ -80,16 +75,18 @@ After running the Kafka Streams application, verify that the processed data has 
 1. Use the Kafka console consumer to read messages from the `customer-total` topic:
 
    ```bash
-   kafka-console-consumer --topic customer-total --from-beginning --bootstrap-server localhost:9092
+   kafka-console-consumer --topic customer-total --bootstrap-server localhost:9092 \
+   --from-beginning \
+   --formatter kafka.tools.DefaultMessageFormatter \
+   --property print.key=true \
+   --property print.value=true \
+   --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer \
+   --property value.deserializer=org.apache.kafka.common.serialization.DoubleDeserializer
    ```
 
 2. The output should display the total order amount per customer in real time:
 
-   ```plaintext
-   customer1,150.75
-   customer2,200.75
-   customer3,300.00
-   ```
+![Output](Capture/capture2.png)
 
 ---
 
@@ -144,11 +141,11 @@ Below are visual representations of the setup process and results:
 
 ### Kafka Stream Workflow
 
-![Kafka Stream Workflow](Capture/capture1.png)
+
 
 ### HDFS Data Flow
 
-![HDFS Data Flow](Capture/capture2.png)
+
 
 ---
 
