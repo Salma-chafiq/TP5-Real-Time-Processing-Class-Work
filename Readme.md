@@ -42,7 +42,7 @@ Once the topics are set up, produce some sample data to the `orders` topic to si
 
 2. Enter sample messages in the format `<customer_id>,<order_amount>`:
 
-![Input](Capture/capture1.png)
+![Input](Capture/capture1.PNG)
 
    Each message represents an order with a `customer_id` and an `order_amount`.
 
@@ -86,7 +86,7 @@ After running the Kafka Streams application, verify that the processed data has 
 
 2. The output should display the total order amount per customer in real time:
 
-![Output](Capture/capture2.png)
+![Output](Capture/capture2.PNG)
 
 ---
 
